@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./../auth/authContext"; // Importe o hook de autenticação
-import '../styles/login.css';  // Importe o arquivo CSS aqui
+import { useAuth } from "./../auth/authContext"; 
+import '../styles/login.css';
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth(); // Acesso à função de login do contexto
+  const { login } = useAuth();
 
   const users = [
     { username: "user1", password: "password1" },
@@ -24,8 +24,8 @@ function LoginPage() {
     );
 
     if (foundUser) {
-      login(); // Marca o usuário como autenticado
-      navigate("/form"); // Redireciona para o formulário
+      login();
+      navigate("/form");
     } else {
       setError("Credenciais inválidas. Tente novamente.");
     }

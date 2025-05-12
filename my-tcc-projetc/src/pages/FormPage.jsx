@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import '../styles/form.css';  // Importe o arquivo CSS aqui
+import '../styles/form.css';
 
 function FormPage() {
   const [formData, setFormData] = useState({
@@ -31,7 +31,10 @@ function FormPage() {
         [name]: checked,
       }));
     } else if (name.includes("address")) {
-      const [addressField] = name.split(".");
+      console.log(name);
+      
+      const addressField = name.split(".")[1];
+
       setFormData((prevData) => ({
         ...prevData,
         address: {
@@ -50,10 +53,8 @@ function FormPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Resetando mensagens de erro
     setError("");
 
-    // Validação
     if (!formData.name || !formData.email || !formData.phone || !formData.birthDate || !formData.gender) {
       setError("Todos os campos obrigatórios devem ser preenchidos.");
       return;
@@ -69,10 +70,6 @@ function FormPage() {
       return;
     }
 
-    console.log("Formulário enviado com sucesso!");
-    console.log(formData);
-
-    // Limpar campos após envio
     setFormData({
       name: "",
       email: "",
